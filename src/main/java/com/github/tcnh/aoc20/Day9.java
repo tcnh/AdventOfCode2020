@@ -30,9 +30,9 @@ public class Day9 {
         return false;
     }
 
-    private static long findContiguousRange(Long invalidNumber) {
+    private static long findContiguousRange(long invalidNumber) {
         for (int index = 0; index < numbers.size(); index++) {
-            int sum = 0;
+            long sum = 0L;
             ArrayList<Long> numbersInRange = new ArrayList<>();
             int i = index;
             while (sum <= invalidNumber) {
