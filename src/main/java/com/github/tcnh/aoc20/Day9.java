@@ -15,14 +15,13 @@ public class Day9 {
         while (i < numbers.size() && isValid(numbers.get(i), i)) {
             i++;
         }
-
         System.out.println("Part 1: the first invalid number is: " + numbers.get(i));
         System.out.println("Part 2: Min + Max of contiguous range is: " + findContiguousRange(numbers.get(i)));
     }
 
     private static boolean isValid(Long number, int position) {
         for (int i = position - PREAMBLE; i < position; i++) {
-            for (int offset = 1; offset <= PREAMBLE; offset++) {
+            for (int offset = 1; offset < PREAMBLE; offset++) {
                 if (numbers.get(i) + numbers.get(i + offset) == number) {
                     return true;
                 }
