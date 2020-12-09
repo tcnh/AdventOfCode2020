@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.System.in;
+import static java.lang.System.nanoTime;
+
 public class Day9 {
     static final int PREAMBLE = 25;
     static List<Long> numbers = InputFileReader.readLinesToLongs("/input9.txt");
@@ -16,7 +19,7 @@ public class Day9 {
             i++;
         }
         System.out.println("Part 1: the first invalid number is: " + numbers.get(i));
-        System.out.println("Part 2: Min + Max of contiguous range is: " + findContiguousRange(numbers.get(i)));
+        System.out.println("Part 2: (M1) Min + Max of contiguous range is: " + findContiguousRange(numbers.get(i)));
     }
 
     private static boolean isValid(Long number, int position) {
@@ -31,19 +34,20 @@ public class Day9 {
     }
 
     private static long findContiguousRange(long invalidNumber) {
-        for (int index = 0; index < numbers.size(); index++) {
-            long sum = 0L;
-            ArrayList<Long> numbersInRange = new ArrayList<>();
-            int i = index;
-            while (sum <= invalidNumber) {
-                sum += numbers.get(i);
-                numbersInRange.add(numbers.get(i));
-                if (sum == invalidNumber) {
-                    return Collections.max(numbersInRange) + Collections.min(numbersInRange);
-                }
-                i++;
+        long sum = 0L;
+        ArrayList<Long> numbersInRange = new ArrayList<>();
+        int i = 0;
+        while (i < numbers.size()) {
+            sum += numbers.get(i);
+            numbersInRange.add(numbers.get(i));
+            while (sum > invalidNumber) {
+                sum -= numbersInRange.remove(0);
             }
+            if (numbersInRange.size() > 1 && sum == invalidNumber) {
+                return Collections.max(numbersInRange) + Collections.min(numbersInRange);
+            }
+            i++;
         }
-        return -1;
+        throw new IllegalArgumentException("No range found that sums to " + invalidNumber);
     }
 }
