@@ -15,8 +15,8 @@ public class Day9 {
         while (i < numbers.size() && isValid(numbers.get(i), i)) {
             i++;
         }
-        System.out.println("Part 1: the first invalid number is: " + numbers.get(i));
-        System.out.println("Part 2: (M1) Min + Max of contiguous range is: " + findContiguousRange(numbers.get(i)));
+        System.out.println("Part 1: The first invalid number is: " + numbers.get(i));
+        System.out.println("Part 2: Min + Max of contiguous range is: " + findContiguousRange(numbers.get(i)));
     }
 
     private static boolean isValid(Long number, int position) {
