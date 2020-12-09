@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.lang.System.in;
-import static java.lang.System.nanoTime;
-
 public class Day9 {
     static final int PREAMBLE = 25;
     static List<Long> numbers = InputFileReader.readLinesToLongs("/input9.txt");
