@@ -22,7 +22,7 @@ public class Day9 {
 
     private static boolean isValid(Long number, int position) {
         for (int i = position - PREAMBLE; i < position; i++) {
-            for (int offset = 1; offset < PREAMBLE; offset++) {
+            for (int offset = 1; offset <= PREAMBLE; offset++) {
                 if (numbers.get(i) + numbers.get(i + offset) == number) {
                     return true;
                 }
