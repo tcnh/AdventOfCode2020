@@ -33,7 +33,7 @@ public class Day10 {
         //PART TWO
         //ArrayList<Integer> multipliers = getMultipliers(adapters);
         //no large groups of one-step moves, so hardcode it
-        ArrayList<Integer> multipliers = new ArrayList<>(List.of(0,1,1,2,4,7,13,24));
+        ArrayList<Integer> multipliers = new ArrayList<>(List.of(0,1,1,2,4,7,13));
 
         oneJoltSteps = 1;
         currentJoltage = 0;
