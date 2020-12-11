@@ -20,6 +20,7 @@ public class Day11 {
                 break;
             }
         }
+
         System.out.println("Part 1: occupied seats: " + seatMap.keySet().stream().filter(occupied -> seatMap.get(occupied)).count());
 
         seatMap = populateSeatMap();
@@ -28,6 +29,7 @@ public class Day11 {
                 break;
             }
         }
+
         System.out.println("Part 2: occupied seats: " + seatMap.keySet().stream().filter(occupied -> seatMap.get(occupied)).count());
     }
 
@@ -35,10 +37,10 @@ public class Day11 {
         boolean changed = false;
         Map<Point, Boolean> newSeatMap = new HashMap<>();
         for (Map.Entry<Point, Boolean> seat : seatMap.entrySet()) {
-            if (!seat.getValue() && occupiedSurroundingSeats(seat.getKey()) == 0) {
+            if (!seat.getValue() && countOccupiedSurroundingSeats(seat.getKey()) == 0) {
                 newSeatMap.put(seat.getKey(), true);
                 changed = true;
-            } else if (seat.getValue() && occupiedSurroundingSeats(seat.getKey()) >= 4) {
+            } else if (seat.getValue() && countOccupiedSurroundingSeats(seat.getKey()) >= 4) {
                 newSeatMap.put(seat.getKey(), false);
                 changed = true;
             } else {
@@ -73,7 +75,8 @@ public class Day11 {
 
     private static int countVisibleOccupiedSeats(Map.Entry<Point, Boolean> seat) {
         return (int) Arrays.stream(Direction.values())
-                .filter(d -> occupiedSeatVisible(new Point(seat.getKey()), d)).count();
+                .filter(d -> occupiedSeatVisible(new Point(seat.getKey()), d))
+                .limit(5).count();
     }
 
     private static boolean occupiedSeatVisible(Point p, Direction d) {
@@ -86,10 +89,11 @@ public class Day11 {
         return false;
     }
 
-    private static int occupiedSurroundingSeats(Point seat) {
+    private static int countOccupiedSurroundingSeats(Point seat) {
         return (int) Arrays.stream(Direction.values())
                 .map(d -> new Point(seat.x + d.offsetX, seat.y + d.offsetY))
-                .filter(occupiedSeat -> seatMap.containsKey(occupiedSeat) && seatMap.get(occupiedSeat)).count();
+                .filter(occupiedSeat -> seatMap.containsKey(occupiedSeat) && seatMap.get(occupiedSeat))
+                .limit(4).count();
     }
 
     private static Map<Point, Boolean> populateSeatMap() {
