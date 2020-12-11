@@ -3,7 +3,7 @@ package com.github.tcnh.aoc20;
 import com.github.tcnh.aoc20.util.Direction;
 import com.github.tcnh.aoc20.util.InputFileReader;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
