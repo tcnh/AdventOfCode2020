@@ -30,7 +30,6 @@ public enum Direction {
         return degMap.get(deg);
     }
 
-
     Direction(int offsetX, int offsetY, int degrees) {
         this.offsetX = offsetX;
         this.offsetY = offsetY;
