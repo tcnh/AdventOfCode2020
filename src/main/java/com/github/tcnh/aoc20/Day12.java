@@ -4,7 +4,6 @@ import com.github.tcnh.aoc20.util.Direction;
 import com.github.tcnh.aoc20.util.InputFileReader;
 
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.List;
 
 public class Day12 {
@@ -31,9 +30,13 @@ public class Day12 {
         String action = instruction.substring(0, 1);
         int value = Integer.parseInt(instruction.substring(1));
 
-        Arrays.stream(Direction.values()).filter(d -> d.toString().equals(action)).forEach(d -> updateLocation(shipLocation, d, value));
-
         switch (action) {
+            case "N":
+            case "E":
+            case "S":
+            case "W":
+                updateLocation(shipLocation, Direction.valueOf(action), value);
+                break;
             case "L":
                 heading = Direction.byDegrees((heading.degrees + (360 - value)) % 360);
                 break;
@@ -50,9 +53,13 @@ public class Day12 {
         String action = instruction.substring(0, 1);
         int value = Integer.parseInt(instruction.substring(1));
 
-        Arrays.stream(Direction.values()).filter(d -> d.toString().equals(action)).forEach(d -> updateLocation(wayPoint, d, value));
-
         switch (action) {
+            case "N":
+            case "E":
+            case "S":
+            case "W":
+                updateLocation(wayPoint, Direction.valueOf(action), value);
+                break;
             case "L":
                 rotateWaypoint(360 - value);
                 break;
