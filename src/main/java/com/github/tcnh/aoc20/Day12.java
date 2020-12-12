@@ -38,10 +38,10 @@ public class Day12 {
                 updateLocation(shipLocation, Direction.valueOf(action), value);
                 break;
             case "L":
-                heading = Direction.byDegrees((heading.degrees + (360 - value)) % 360);
+                heading = Direction.byDegrees(Math.floorMod(heading.degrees - value, 360));
                 break;
             case "R":
-                heading = Direction.byDegrees((heading.degrees + value) % 360);
+                heading = Direction.byDegrees(Math.floorMod(heading.degrees + value, 360));
                 break;
             case "F":
                 updateLocation(shipLocation, heading, value);
